@@ -20,4 +20,27 @@ const UserCredentials = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('users' , UserCredentials )
+const clubdata = new mongoose.Schema({
+    clubName : {
+        type : String,
+        
+    }, 
+
+    description : {
+        type : String,
+       
+    },
+
+    members : {
+        type : String,
+    
+    }
+})
+
+
+let model1 = mongoose.model('users' , UserCredentials )
+let model2 = mongoose.model('clubData' , clubdata )
+module.exports = {
+    model1,
+    model2
+}
