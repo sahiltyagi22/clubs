@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Image and Text Sections</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .image {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .text {
+            flex: 2;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-     <H1>THIS IS CLUBS PAGE</H1>
-     <P>THIS IS WHERE ALL THE CLUBS WILL BE SHOWN TO EXPLORE</P>
+    <div class="section">
+        <div class="image">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+        <div class="text">
+            <h2>Section 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac urna vel dolor commodo sodales vel eu justo.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="image2.jpg" alt="Image 2">
+        </div>
+        <div class="text">
+            <h2>Section 2</h2>
+            <p>Integer cursus purus eget erat commodo, vel aliquam nisl fermentum. Duis in gravida elit, in commodo tortor.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <div class="text">
+            <h2>Section 3</h2>
+            <p>Aliquam nec ipsum non libero fermentum feugiat. In efficitur ultrices libero, eget varius felis eleifend eget.</p>
+        </div>
+    </div>
 </body>
 </html>
