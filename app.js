@@ -15,10 +15,6 @@ app.use(express.static("public"))
 app.set('view engine' , 'ejs')
 
 
-
-
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({extended :true}))
 app.use('/clubs' , clubRoute )
@@ -37,6 +33,10 @@ app.get('/login' , (req,res)=>{
     res.redirect('/register')
 })
 
+
+app.get('/about' , (req,res)=>{
+    res.render('about')
+})
 
 
 
