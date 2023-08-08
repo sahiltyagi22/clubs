@@ -1,11 +1,26 @@
 const express = require('express')
 const { Module } = require('module')
-const users = require('./../DB/db')
+const {model1 , model2} = require('./../DB/db')
+const { json } = require('body-parser')
+const { model } = require('mongoose')
+
+
 
 const router = express.Router()
 
+let clubData = new model2({
+    clubName : "naya",
+    description : "this is music club"
+})
 
-const clubList = ['music' , 'debate' , 'dance' , 'cultural']
+clubData.save()
+
+
+
+
+
+const clubList = ['music' , 'debate' , 'dance' , 'cultural', "drama" , "sports"]
+
 function isValidUser(userName) {
   const lowerCaseUserName = userName.toLowerCase();
   const check = clubList.includes(lowerCaseUserName);
@@ -18,7 +33,7 @@ router.route('/')
    res.render('clubs')
 })
 .post(async(req,res)=>{
-    let user = new users({
+    let user = new model1({
         username : req.body.username,
          email :req.body.email,
          password :req.body.password
@@ -35,10 +50,12 @@ router.route('/')
 })
 
 router.route('/:clubName')
-.get((req,res)=>{
-    const clubname = req.params.clubName
-    if(isValidUser(clubname)){
-        res.render('club' , {clubname : clubname})
+.get(async (req,res)=>{
+     const clubName = req.params.clubName
+     console.log(clubName);
+    if(isValidUser(clubName)){
+        let data = await model2.find({clubName : 'naya'}) 
+        res.json(data)
     }else{
 res.sendStatus(404)
     }
