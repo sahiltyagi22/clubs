@@ -1,23 +1,18 @@
+
 const mongoose = require('mongoose')
 const { stringify } = require('querystring')
+const mongooseSession = require('passport-local-mongoose')
 
 
+mongoose.connect("mongodb://127.0.0.1/GBU-clubs",{useNewUrlParser :true,useUnifiedTopology : true}).then(()=>{
+    console.log("connection is successful");
+})
 
 const UserCredentials = new mongoose.Schema({
-    username : {
-        type : String,
-        required : true
-    }, 
-
-    email : {
-        type : String,
-        required : true
-    },
-
-    password : {
-        type : String,
-        required : true
-    }
+    email : String,
+    username : String,
+    password : String,
+   
 })
 
 const clubdata = new mongoose.Schema({
@@ -36,6 +31,8 @@ const clubdata = new mongoose.Schema({
     
     }
 })
+
+UserCredentials.plugin(mongooseSession)
 
 
 let model1 = mongoose.model('users' , UserCredentials )
