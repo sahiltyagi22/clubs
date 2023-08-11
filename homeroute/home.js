@@ -18,21 +18,37 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.post("/register", (req, res) => {
-  users.register(
-    { username: req.body.username },
-    req.body.password,
-    (err, user) => {
-      if (err) {
-        console.log(err);
-        res.redirect("/register");
-      } else {
-        passport.authenticate("local")(req, res, () => {
-          res.redirect("/clubs");
-        });
+router.post("/register", async (req, res) => {
+  const{phone , age ,username} = req.body
+
+  const existingUser = await users.findOne({ username });
+  if (existingUser) {
+    let link = '<a href = "/register" >click here</a>'
+    res.send("username already exists" +  link)
+  
+  }else{
+    users.register(
+      { username: req.body.username },
+      req.body.password,
+      (err, user) => {
+        if (err) {
+          console.log(err);
+          res.redirect("/register");
+        } else {
+  
+          const newUser = new model1({
+    phone , age , displayname
+  
+          })
+          newUser.save()
+          passport.authenticate("local")(req, res, () => {
+            res.redirect("/clubs");
+          });
+        }
       }
-    }
-  );
+    )
+  }
+ ;
 });
 
 router.get("/login", (req, res) => {
