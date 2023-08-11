@@ -9,9 +9,11 @@ mongoose.connect("mongodb://127.0.0.1/GBU-clubs",{useNewUrlParser :true,useUnifi
 })
 
 const UserCredentials = new mongoose.Schema({
-    email : String,
+    email: String,
     username : String,
     password : String,
+    phone : Number,
+    age : String
    
 })
 
